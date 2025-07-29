@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garden Paradise - Test Suite</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+        .test-section.pass {
+            border-color: #4CAF50;
+            background: #f1f8e9;
+        }
+        .test-section.fail {
+            border-color: #f44336;
+            background: #ffebee;
+        }
+        .test-result {
+            padding: 8px 12px;
+            margin: 5px 0;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .test-result.pass {
+            background: #4CAF50;
+            color: white;
+        }
+        .test-result.fail {
+            background: #f44336;
+            color: white;
+        }
+        .test-result.info {
+            background: #2196F3;
+            color: white;
+        }
+        .error-details {
+            background: #ffcdd2;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        .stats {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Garden Paradise Test Suite</h1>
+        
+        <div class="stats" id="test-stats">
+            <h3>Test Statistics</h3>
+            <div id="stats-content">Tests not run yet.</div>
+        </div>
+
+        <div>
+            <button onclick="runAllTests()">🚀 Run All Tests</button>
+            <button onclick="runQuickDiagnostic()">⚡ Quick Diagnostic</button>
+            <button onclick="clearResults()">🗑️ Clear Results</button>
+        </div>
+
+        <div id="test-results"></div>
+    </div>
+
+    <!-- Include game files -->
+    <script src="src/js/utils.js"></script>
+    <script src="src/js/plants.js"></script>
+    <script src="src/js/garden.js"></script>
+    <script src="src/js/ui.js"></script>
+    <script src="src/js/shop.js"></script>
+    <script src="src/js/game.js"></script>
+
+    <script>
+        let testResults = [];
+        let passed = 0;
+        let failed = 0;
+
+        function logTest(name, success, error = null) {
+            testResults.push({ name, success, error });
+            if (success) passed++;
+            else failed++;
+        }
+
+        function assert(condition, message) {
+            if (!condition) throw new Error(message || 'Assertion failed');
+        }
+
+        function assertEqual(actual, expected, message) {
+            if (actual !== expected) {
+                throw new Error(message || `Expected ${expected}, got ${actual}`);
+            }
+        }
+
+        async function runQuickDiagnostic() {
+            testResults = [];
+            passed = 0;
+            failed = 0;
+            
+            // Test 1: Check if all required classes exist
+            try {
+                assert(typeof Utils !== 'undefined', 'Utils class should exist');
+                assert(typeof PlantData !== 'undefined', 'PlantData should exist');
+                assert(typeof Plant !== 'undefined', 'Plant class should exist');
+                assert(typeof Garden !== 'undefined', 'Garden class should exist');
+                assert(typeof Game !== 'undefined', 'Game class should exist');
+                assert(typeof UI !== 'undefined', 'UI class should exist');
+                assert(typeof Shop !== 'undefined', 'Shop class should exist');
+                logTest('✅ All classes loaded', true);
+            } catch (error) {
+                logTest('❌ Class loading', false, error);
+            }
+
+            // Test 2: Check PlantData integrity
+            try {
+                const requiredPlants = ['lettuce', 'tomato', 'carrot', 'strawberry', 'apple'];
+                requiredPlants.forEach(plantType => {
+                    assert(PlantData[plantType], `Plant ${plantType} should exist`);
+                    assert(PlantData[plantType].name, `Plant ${plantType} should have name`);
+                    assert(PlantData[plantType].cost > 0, `Plant ${plantType} should have cost`);
+                    assert(PlantData[plantType].harvestValue > 0, `Plant ${plantType} should have harvest value`);
+                });
+                logTest('✅ PlantData integrity', true);
+            } catch (error) {
+                logTest('❌ PlantData integrity', false, error);
+            }
+
+            // Test 3: Plant creation and growth
+            try {
+                const plant = new Plant('lettuce', 0);
+                assert(plant.type === 'lettuce', 'Plant should have correct type');
+                assert(plant.plotIndex === 0, 'Plant should have correct plot index');
+                assert(plant.data, 'Plant should have data');
+                
+                // Test growth calculation
+                const oldPlant = new Plant('lettuce', 0, Date.now() - 35000); // 35 seconds ago
+                assert(oldPlant.isHarvestable(), 'Old plant should be harvestable');
+                logTest('✅ Plant creation and growth', true);
+            } catch (error) {
+                logTest('❌ Plant creation and growth', false, error);
+            }
+
+            // Test 4: Utils functions
+            try {
+                assertEqual(Utils.formatNumber(1500), '1.5K', 'Number formatting should work');
+                assertEqual(Utils.formatTime(90000), '1m 30s', 'Time formatting should work');
+                assert(Utils.createGameState(), 'Game state creation should work');
+                logTest('✅ Utils functions', true);
+            } catch (error) {
+                logTest('❌ Utils functions', false, error);
+            }
+
+            // Test 5: Game balance check
+            try {
+                Object.entries(PlantData).forEach(([type, data]) => {
+                    const profitRatio = data.harvestValue / data.cost;
+                    assert(profitRatio > 1, `${data.name} should be profitable`);
+                    assert(profitRatio < 10, `${data.name} profit should be reasonable`);
+                });
+                logTest('✅ Game balance', true);
+            } catch (error) {
+                logTest('❌ Game balance', false, error);
+            }
+
+            displayResults();
+        }
+
+        async function runAllTests() {
+            await runQuickDiagnostic();
+            
+            // Additional comprehensive tests
+            try {
+                // Test DOM manipulation
+                const testEl = document.createElement('div');
+                testEl.id = 'test-element';
+                document.body.appendChild(testEl);
+                
+                const found = document.getElementById('test-element');
+                assert(found, 'Should find created element');
+                document.body.removeChild(testEl);
+                logTest('✅ DOM manipulation', true);
+            } catch (error) {
+                logTest('❌ DOM manipulation', false, error);
+            }
+
+            // Test error handling
+            try {
+                try {
+                    new Plant('invalid-plant', 0);
+                    throw new Error('Should have thrown error for invalid plant');
+                } catch (plantError) {
+                    assert(plantError.message.includes('Unknown plant type'), 'Should throw correct error');
+                }
+                logTest('✅ Error handling', true);
+            } catch (error) {
+                logTest('❌ Error handling', false, error);
+            }
+
+            // Test performance
+            try {
+                const startTime = performance.now();
+                for (let i = 0; i < 100; i++) {
+                    new Plant('lettuce', i);
+                }
+                const duration = performance.now() - startTime;
+                assert(duration < 50, `Performance should be acceptable (${duration}ms)`);
+                logTest('✅ Performance', true);
+            } catch (error) {
+                logTest('❌ Performance', false, error);
+            }
+
+            displayResults();
+        }
+
+        function displayResults() {
+            const container = document.getElementById('test-results');
+            const total = passed + failed;
+            const percentage = total > 0 ? Math.round((passed / total) * 100) : 0;
+            
+            // Update stats
+            document.getElementById('stats-content').innerHTML = `
+                <strong>Total Tests:</strong> ${total}<br>
+                <strong>Passed:</strong> ${passed} ✅<br>
+                <strong>Failed:</strong> ${failed} ❌<br>
+                <strong>Success Rate:</strong> ${percentage}%
+            `;
+
+            // Display results
+            let html = `<div class="test-section ${failed === 0 ? 'pass' : 'fail'}">`;
+            html += `<h3>📋 Test Results</h3>`;
+            
+            testResults.forEach(result => {
+                const statusClass = result.success ? 'pass' : 'fail';
+                html += `<div class="test-result ${statusClass}">${result.name}</div>`;
+                if (!result.success && result.error) {
+                    html += `<div class="error-details">${result.error.toString()}</div>`;
+                }
+            });
+            
+            html += `</div>`;
+            container.innerHTML = html;
+        }
+
+        function clearResults() {
+            document.getElementById('test-results').innerHTML = '';
+            document.getElementById('stats-content').innerHTML = 'Tests not run yet.';
+            testResults = [];
+            passed = 0;
+            failed = 0;
+        }
+
+        // Run quick diagnostic on page load
+        window.addEventListener('load', () => {
+            setTimeout(runQuickDiagnostic, 500);
+        });
+    </script>
+</body>
+</html> 

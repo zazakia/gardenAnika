@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garden Paradise - Grow Your Dream Garden!</title>
+    <link rel="icon" type="image/x-icon" href="/src/assets/images/favicon.ico">
+    <link rel="stylesheet" href="src/css/main.css">
+    <link rel="stylesheet" href="src/css/garden.css">
+    <link rel="stylesheet" href="src/css/ui.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Header UI -->
+        <header id="game-header">
+            <div id="status-bar">
+                <div class="status-item">
+                    <span class="icon">💰</span>
+                    <span id="coins">50</span>
+                </div>
+                <div class="status-item">
+                    <span class="icon">💧</span>
+                    <span id="water">10</span>
+                </div>
+                <div class="status-item">
+                    <span class="icon">📊</span>
+                    <div class="level-info">
+                        <span>Level <span id="level">1</span></span>
+                        <div class="progress-container">
+                            <div id="experience-bar" class="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Settings Button -->
+                <button id="settings-btn" title="Settings" class="icon-btn">⚙️</button>
+            </div>
+        </header>
+
+        <!-- Main Game Area -->
+        <main id="game-main">
+            <!-- Garden Grid -->
+            <div id="garden-container">
+                <div id="garden-grid"></div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div id="action-panel">
+                <button id="plant-btn" class="action-btn" disabled>
+                    <span class="icon">🌱</span>
+                    Plant Seed
+                </button>
+                <button id="water-btn" class="action-btn">
+                    <span class="icon">💧</span>
+                    Water Plant
+                </button>
+                <button id="harvest-btn" class="action-btn" disabled>
+                    <span class="icon">🌾</span>
+                    Harvest
+                </button>
+                <button id="shop-btn" class="action-btn">
+                    <span class="icon">🛒</span>
+                    Shop
+                </button>
+            </div>
+        </main>
+
+        <!-- Shop Modal (Hidden by default) -->
+        <div id="shop-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>🛒 Garden Shop</h2>
+                    <button id="close-shop" class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div id="shop-items"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notifications -->
+        <div id="notifications"></div>
+
+        <!-- Settings Modal -->
+        <div id="settings-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>🔊 Sound Settings</h2>
+                    <button id="close-settings" class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="sound-settings-form">
+                        <label><input type="checkbox" name="success" checked> Success</label><br>
+                        <label><input type="checkbox" name="error" checked> Error</label><br>
+                        <label><input type="checkbox" name="warning" checked> Warning</label><br>
+                        <label><input type="checkbox" name="info" checked> Info</label><br>
+                        <label><input type="checkbox" name="plant" checked> Plant</label><br>
+                        <label><input type="checkbox" name="water" checked> Water</label><br>
+                        <label><input type="checkbox" name="harvest" checked> Harvest</label><br>
+                        <label><input type="checkbox" name="purchase" checked> Purchase</label><br>
+                        <label><input type="checkbox" name="click" checked> Click</label><br>
+                        <label><input type="checkbox" name="select" checked> Select</label><br>
+                        <label><input type="checkbox" name="level_up" checked> Level Up</label><br>
+                        <label><input type="checkbox" name="achievement" checked> Achievement</label><br>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Only load the main entry point script -->
+    <script type="module" src="src/js/main.js"></script>
+</body>
+</html> 

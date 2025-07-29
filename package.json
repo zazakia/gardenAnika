@@ -1,0 +1,25 @@
+{
+  "name": "garden-paradise",
+  "version": "1.0.0",
+  "description": "A relaxing plant and fruit growing game",
+  "main": "index.html",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "live-server .",
+    "lint": "eslint src/js/**/*.js",
+    "lint:fix": "eslint src/js/**/*.js --fix",
+    "format": "prettier --write \"src/**/*.{js,css,html}\""
+  },
+  "keywords": ["game", "farming", "plants", "simulation", "garden"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "live-server": "^1.2.2",
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.0"
+  }
+}

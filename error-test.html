@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garden Paradise - Error Testing</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .test-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .test-card h3 {
+            margin-top: 0;
+            color: #ffd700;
+        }
+        .test-button {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            margin: 5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        .test-button.danger {
+            background: linear-gradient(45deg, #f44336, #d32f2f);
+        }
+        .test-button.warning {
+            background: linear-gradient(45deg, #ff9800, #f57c00);
+        }
+        .test-button.info {
+            background: linear-gradient(45deg, #2196F3, #1976D2);
+        }
+        .results-area {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .console-output {
+            background: #1a1a1a;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            margin-top: 10px;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status-success { background: #4CAF50; }
+        .status-error { background: #f44336; }
+        .status-warning { background: #ff9800; }
+        .status-info { background: #2196F3; }
+        .iframe-container {
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        .iframe-container iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="header">
+            <h1>🧪 Garden Paradise Error Testing Suite</h1>
+            <p>Comprehensive error detection, fixing, and testing for the Garden Paradise game</p>
+        </div>
+
+        <div class="test-grid">
+            <div class="test-card">
+                <h3>🔍 Error Detection</h3>
+                <p>Scan the game code for potential issues and errors</p>
+                <button class="test-button info" onclick="runErrorDetection()">Run Error Detection</button>
+                <button class="test-button" onclick="runFullDiagnostic()">Full Diagnostic</button>
+            </div>
+
+            <div class="test-card">
+                <h3>🔧 Error Fixing</h3>
+                <p>Automatically fix detected errors and issues</p>
+                <button class="test-button" onclick="runErrorFixes()">Apply Fixes</button>
+                <button class="test-button warning" onclick="runGameBalanceFixes()">Fix Game Balance</button>
+            </div>
+
+            <div class="test-card">
+                <h3>🚀 Performance Testing</h3>
+                <p>Test game performance and optimization</p>
+                <button class="test-button info" onclick="runPerformanceTest()">Performance Test</button>
+                <button class="test-button" onclick="runMemoryTest()">Memory Test</button>
+            </div>
+
+            <div class="test-card">
+                <h3>🎮 Game Testing</h3>
+                <p>Test actual game functionality</p>
+                <button class="test-button" onclick="runGameTest()">Test Game</button>
+                <button class="test-button danger" onclick="runStressTest()">Stress Test</button>
+            </div>
+        </div>
+
+        <div class="results-area">
+            <h3>📊 Test Results</h3>
+            <div id="test-results">
+                <p>No tests run yet. Click a test button to start.</p>
+            </div>
+            <div class="console-output" id="console-output"></div>
+        </div>
+
+        <div class="iframe-container">
+            <h3>🎯 Live Game Testing</h3>
+            <iframe id="game-frame" src="index.html"></iframe>
+        </div>
+    </div>
+
+    <script>
+        console.log('🧪 Error Testing Suite initialized!');
+    </script>
+</body>
+</html> 

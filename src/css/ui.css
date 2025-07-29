@@ -1,0 +1,402 @@
+/* Shop UI Styles */
+#shop-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.shop-item {
+    background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+    border: 2px solid #dee2e6;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.shop-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    border-color: #4CAF50;
+}
+
+.shop-item.affordable {
+    border-color: #4CAF50;
+    background: linear-gradient(145deg, #f1f8e9, #e8f5e8);
+}
+
+.shop-item.expensive {
+    border-color: #f44336;
+    background: linear-gradient(145deg, #ffebee, #ffcdd2);
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.shop-item-icon {
+    font-size: 3em;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.shop-item-name {
+    font-weight: 600;
+    color: #2d5a0b;
+    margin-bottom: 5px;
+    font-size: 1.1em;
+}
+
+.shop-item-price {
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 8px;
+}
+
+.shop-item-price .coin-icon {
+    color: #FFD700;
+    margin-right: 3px;
+}
+
+.shop-item-description {
+    font-size: 0.8em;
+    color: #777;
+    line-height: 1.3;
+    margin-bottom: 10px;
+}
+
+.shop-item-stats {
+    display: flex;
+    justify-content: space-around;
+    font-size: 0.8em;
+    color: #555;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #ddd;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.stat-label {
+    font-weight: 600;
+}
+
+.stat-value {
+    color: #4CAF50;
+}
+
+/* Inventory Styles */
+.inventory-bar {
+    display: flex;
+    gap: 10px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    margin-bottom: 15px;
+    backdrop-filter: blur(10px);
+    overflow-x: auto;
+}
+
+.inventory-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+    background: linear-gradient(145deg, #f0f0f0, #e0e0e0);
+    border-radius: 8px;
+    min-width: 60px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.inventory-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.inventory-item.selected {
+    border-color: #4CAF50;
+    background: linear-gradient(145deg, #e8f5e8, #c8e6c8);
+}
+
+.inventory-item-icon {
+    font-size: 1.5em;
+    margin-bottom: 4px;
+}
+
+.inventory-item-count {
+    font-size: 0.8em;
+    font-weight: 600;
+    color: #333;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 2px 6px;
+    border-radius: 10px;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* Tooltip Styles */
+.tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.9em;
+    z-index: 1500;
+    pointer-events: none;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tooltip.show {
+    opacity: 1;
+}
+
+.tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Achievement Notification */
+.achievement-notification {
+    background: linear-gradient(145deg, #FFD700, #FFA500);
+    color: #8B4513;
+    border: 2px solid #DAA520;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+}
+
+.achievement-notification::before {
+    content: '🏆';
+    margin-right: 8px;
+    font-size: 1.2em;
+}
+
+.achievement-notification::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Level Up Animation */
+.level-up-animation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(145deg, #FFD700, #FFA500);
+    color: #8B4513;
+    padding: 20px 30px;
+    border-radius: 15px;
+    font-size: 1.5em;
+    font-weight: 700;
+    text-align: center;
+    z-index: 2500;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: levelUpBounce 0.6s ease-out;
+}
+
+@keyframes levelUpBounce {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Progress Bars */
+.progress-container {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 3px;
+    margin: 5px 0;
+}
+
+.progress-bar-ui {
+    height: 8px;
+    background: linear-gradient(90deg, #4CAF50, #8BC34A);
+    border-radius: 8px;
+    transition: width 0.8s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar-ui::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: progressShine 2s infinite;
+}
+
+@keyframes progressShine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Weather Widget */
+.weather-widget {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+}
+
+.weather-icon {
+    font-size: 1.5em;
+    animation: weatherFloat 3s ease-in-out infinite;
+}
+
+@keyframes weatherFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
+}
+
+.weather-rain .weather-icon {
+    animation: weatherRain 0.5s infinite;
+}
+
+.weather-storm .weather-icon {
+    animation: weatherStorm 0.3s infinite;
+}
+
+@keyframes weatherRain {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(2px) rotate(2deg); }
+}
+
+@keyframes weatherStorm {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    25% { transform: translateX(-1px) rotate(-1deg); }
+    75% { transform: translateX(1px) rotate(1deg); }
+}
+
+/* Collection Book Preview */
+.collection-preview {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.collected-plant {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    background: linear-gradient(145deg, #e8f5e8, #c8e6c8);
+    border: 2px solid #4CAF50;
+}
+
+.uncollected-plant {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f0f0;
+    border: 2px solid #ccc;
+    color: #999;
+}
+
+.uncollected-plant::before {
+    content: '?';
+    font-weight: bold;
+}
+
+/* Status Legend */
+.status-legend {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    max-width: 300px;
+    border: 1px solid #e0e0e0;
+}
+
+.status-legend h3 {
+    margin: 0 0 10px 0;
+    color: #2d5a0b;
+    font-size: 1.1em;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 5px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    color: #333;
+}
+
+.legend-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.legend-text {
+    flex: 1;
+}
+
+.item-image {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    display: block;
+    margin: 0 auto 8px auto;
+    background: #fff;
+} 
