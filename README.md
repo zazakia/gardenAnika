@@ -1,145 +1,140 @@
-# 🌱 Garden Paradise
+# �� Garden Paradise
 
-A relaxing plant and fruit growing simulation game built with HTML5, CSS3, and JavaScript.
+A delightful browser-based plant growing game where you can cultivate various plants, manage resources, and watch your garden flourish!
 
-![Garden Paradise Preview](https://via.placeholder.com/800x400/87CEEB/FFFFFF?text=🌻+Garden+Paradise+🌻)
+## 🎮 Play Online
 
-## 🎮 How to Play
+**[Play Garden Paradise Online](https://zazakia.github.io/gardenAnika/)**
 
-### Getting Started
-1. **Select a plot** by clicking on any empty garden square
-2. **Plant seeds** using the Plant Seed button or pressing Spacebar
-3. **Water your plants** to keep them healthy with the Water button or 'W' key
-4. **Harvest** mature plants for coins and experience with the Harvest button or 'H' key
-5. **Visit the shop** to buy new seeds and unlock more plant varieties
+## 🚀 Features
 
-### Game Mechanics
-- **💰 Coins**: Earn money by harvesting plants to buy more seeds
-- **💧 Water**: Keep plants watered - your water refills automatically over time
-- **⭐ Experience**: Gain XP to level up and unlock new plant types
-- **🌱 Plant Growth**: Plants grow in real-time with visible progress bars
+- **🌿 Plant Growing System**: Plant seeds, water them, and watch them grow through different stages
+- **🛒 Shop System**: Purchase seeds and water with your earned coins
+- **💰 Resource Management**: Manage coins and water efficiently
+- **📈 Progression System**: Gain experience and level up to unlock new plants
+- **🔊 Sound System**: Customizable sound effects for different game events
+- **💾 Auto-Save**: Your progress is automatically saved locally
+- **📱 Responsive Design**: Works on desktop and mobile devices
 
-### Controls
-- **Click**: Select garden plots
-- **Spacebar**: Plant seed in selected plot
-- **W**: Water selected plant
-- **H**: Harvest selected plant
-- **S**: Open shop
+## 🎯 How to Play
 
-## 🚀 Running the Game
+1. **Plant Seeds**: Click on empty plots to plant seeds from your inventory
+2. **Water Plants**: Use water to keep your plants healthy and growing
+3. **Harvest**: Collect mature plants to earn coins and experience
+4. **Shop**: Buy more seeds and water from the shop
+5. **Level Up**: Gain experience to unlock new plant types
 
-### Development Server
+## 🛠️ Development
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- pnpm (recommended) or npm
+
+### Installation
+
+1. Clone the repository:
 ```bash
-# Install dependencies
-pnpm install
-
-# Start development server
-pnpm serve
+git clone https://github.com/zazakia/gardenAnika.git
+cd gardenAnika
 ```
 
-Open http://localhost:8080 in your browser to play!
-
-### Production Build
+2. Install dependencies:
 ```bash
-# Build for production
+pnpm install
+```
+
+3. Start the development server:
+```bash
+pnpm dev
+```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+### Build for Production
+
+```bash
 pnpm build
 ```
 
-## 🌿 Plant Types
+### Available Scripts
 
-### Currently Available:
-- **🥬 Lettuce** (Level 1) - Fast-growing starter crop
-- **🍅 Tomato** (Level 2) - Higher value fruit
-- **🥕 Carrot** (Level 2) - Reliable vegetable
+- `pnpm dev` - Start development server
+- `pnpm build` - Build for production
+- `pnpm preview` - Preview production build
+- `pnpm lint` - Run ESLint
+- `pnpm format` - Format code with Prettier
 
-### Coming Soon:
-- 🍓 Strawberry (Level 3)
-- 🍎 Apple Tree (Level 5)
-- 💰 Money Tree (Level 10)
-- 🌈 Rainbow Flower (Level 7)
+## 🏗️ Project Structure
 
-## 🛠️ Technical Details
-
-### Project Structure
 ```
 Garden/
-├── index.html           # Main game page
 ├── src/
 │   ├── js/
-│   │   ├── game.js      # Main game controller
-│   │   ├── garden.js    # Garden management
-│   │   ├── plants.js    # Plant classes and data
-│   │   ├── shop.js      # Shop system (planned)
-│   │   ├── ui.js        # User interface (planned)
-│   │   └── utils.js     # Helper functions
+│   │   ├── game.js      # Main game logic
+│   │   ├── garden.js    # Garden grid management
+│   │   ├── plants.js    # Plant types and growth logic
+│   │   ├── shop.js      # Shop system
+│   │   ├── sounds.js    # Sound effects
+│   │   ├── ui.js        # User interface
+│   │   ├── utils.js     # Utility functions
+│   │   └── main.js      # Application entry point
 │   ├── css/
-│   │   ├── main.css     # Main styles
+│   │   ├── main.css     # Global styles
 │   │   ├── garden.css   # Garden-specific styles
 │   │   └── ui.css       # UI component styles
-│   └── assets/          # Images, sounds, data files
+│   └── assets/
+│       ├── images/      # Game images
+│       └── sounds/      # Audio files
+├── index.html           # Main HTML file
 ├── package.json         # Dependencies and scripts
-└── README.md           # This file
+└── vite.config.js      # Vite configuration
 ```
 
-### Features Implemented ✅
-- [x] **Garden Grid System** - 6x6 interactive grid
-- [x] **Plant Growth** - Real-time growth with visual feedback
-- [x] **Resource Management** - Coins and water system
-- [x] **Shop System** - Buy seeds and unlock plants
-- [x] **Save/Load** - Progress saved automatically
-- [x] **Progression** - Level up system with XP
-- [x] **Multiple Plants** - Different growth times and values
-- [x] **Mobile Responsive** - Works on phones and tablets
+## 🎨 Technologies Used
 
-### Planned Features 🚧
-- [ ] Weather system affecting plant growth
-- [ ] Achievement system with rewards
-- [ ] Sound effects and music
-- [ ] Garden expansion upgrades
-- [ ] Special plants with unique abilities
-- [ ] Seasonal events and limited plants
+- **HTML5** - Game structure
+- **CSS3** - Styling and animations
+- **JavaScript (ES6+)** - Game logic
+- **Vite** - Build tool and dev server
+- **pnpm** - Package manager
+- **LocalStorage** - Game state persistence
 
-## 🎯 Game Balance
+## 🌟 Game Features
 
-### Economy
-- **Starting resources**: 50 coins, 10 water, 5 lettuce seeds
-- **Water refill**: +1 every 30 seconds (max 10)
-- **Plant prices**: 5-500 coins depending on rarity
-- **Harvest multiplier**: ~2x seed cost (with 20% variance)
+### Plant Types
+- **Lettuce** - Fast growing, basic plant
+- **Tomato** - Medium growth time, good value
+- **Carrot** - Longer growth, higher value
+- **Strawberry** - Premium plant, high value
+- **Apple** - Rare plant, highest value
 
-### Growth Times (Development)
-- **Lettuce**: 30 seconds
-- **Carrot**: 45 seconds  
-- **Tomato**: 90 seconds
-
-*Note: Times are shortened for development. Final game will have longer, more realistic growth times.*
-
-## 🐛 Known Issues
-
-- Shop modal may need refresh on first open
-- Progress bars update every second (performance optimization)
-- No sound system implemented yet
+### Sound Settings
+Customize which sounds you want to hear:
+- Success/Error notifications
+- Plant actions (plant, water, harvest)
+- Shop interactions
+- UI interactions
+- Level up and achievement sounds
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## 📜 License
+## 📝 License
 
-MIT License - feel free to use this code for your own projects!
+This project is open source and available under the [MIT License](LICENSE).
 
-## 🌟 Credits
+## 🙏 Acknowledgments
 
-- **Emojis**: Unicode emoji set for plant icons
-- **Inspiration**: Classic farming simulation games
-- **Built with**: Pure HTML5, CSS3, and JavaScript (no frameworks!)
+- Built with modern web technologies
+- Inspired by classic farming games
+- Designed for a relaxing gaming experience
 
 ---
 
-**Happy Gardening! 🌻**
-
-*Start small, grow big, and build your garden paradise!* 
+**Happy Gardening! 🌱✨** 
